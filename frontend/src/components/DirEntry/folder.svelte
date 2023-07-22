@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { main } from "./../../wailsjs/go/models";
+    import type { main } from "../../../wailsjs/go/models";
 
     import Item from "./item.svelte";
 
@@ -12,6 +12,7 @@
     {/each}
 </div>
 
+<!--        Styling        -->
 <style lang="scss">
     .Folder {
         display: flex;
