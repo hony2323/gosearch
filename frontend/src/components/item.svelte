@@ -1,13 +1,17 @@
 <script lang="ts">
-    export let name = "name";
-    export let size = "size";
-    export let icon = "icon";
-    export let date = "date";
+    import type { main } from "./../../wailsjs/go/models";
+    import { path } from "./../store";
+    export let dirEntry: main.DirEntryJson;
+    function changePath(newEntryName) {
+        path.set($path + newEntryName + "/");
+    }
 </script>
 
-<div>
-    {name}
-    {size}
-    {icon}
-    {date}
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<div
+    on:click={() => {
+        debugger;
+        changePath(dirEntry.name);
+    }}>
+    {dirEntry.name}
 </div>

@@ -1,9 +1,20 @@
 <script lang="ts">
+    import type { main } from "./../../wailsjs/go/models";
+
     import Item from "./item.svelte";
 
-    export let itemList;
+    export let itemList: main.DirEntryJson[];
 </script>
 
-{#each itemList as itm}
-    <Item date="0" icon="asd" name={itm.name} size=3 />
-{/each}
+<div class="Folder">
+    {#each itemList as itm}
+        <Item dirEntry={itm} />
+    {/each}
+</div>
+
+<style lang="scss">
+    .Folder {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
