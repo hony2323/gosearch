@@ -15,9 +15,9 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="item">
     {#if dirEntry.isDir}
-         <FolderIcon />
+        <FolderIcon />
     {:else}
-         <FileIcon />
+        <FileIcon />
     {/if}
     <div class="itemText" on:dblclick={() => handleDirEntryClick(dirEntry)}>
         {dirEntry.name}
