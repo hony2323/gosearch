@@ -4,14 +4,24 @@
     import { ListFolder } from "../../../wailsjs/go/main/App";
     import { path } from "../store/store";
     let result = [];
-    
+
     // List folder executes any time path is changed.
-    $: ListFolder($path).then((res) => {result = res;})
-
-
-
-
+    $: ListFolder($path).then((res) => {
+        result = res;
+    });
 </script>
 
-<Navbar/>
-<Folder itemList={result} />
+<Navbar />
+
+<div class="ExplorerBody">
+    <Folder itemList={result} />
+    <div></div>
+</div>
+
+<style lang="scss">
+    .ExplorerBody {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+</style>
