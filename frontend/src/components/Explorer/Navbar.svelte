@@ -8,23 +8,31 @@
   };
 </script>
 
-<div class="navbar">
-  <div on:dblclick={() => handleBackClick()}
-    class="navitem">
-    <AirplayIcon size="24" on:click={() => handleBackClick()} />
+<div>
+  <div id="navrow1" class="navrow">
+    <div on:dblclick={() => handleBackClick()} class="navitem">
+      <AirplayIcon size="24" on:click={() => handleBackClick()} />
+    </div>
+    <div class="navitem">
+      <h2>{$path}</h2>
+    </div>
   </div>
-  <div class="navitem">
-    <h2>{$path}</h2>
-  </div>
-  <div class="navitem">
-    <Search />
+  <div class="navrow">
+    <div class="navitem">
+      <Search />
+    </div>
   </div>
 </div>
 
 <style lang="scss">
-  .navbar {
+
+  #navrow1 {
+    justify-content: space-between;
+    margin: 0 50px;
+  }
+  .navrow {
     display: flex;
-    justify-content: space-evenly;
+    // justify-content: space-evenly;
   }
 
   .navitem {
