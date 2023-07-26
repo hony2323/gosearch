@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"io/fs"
 
 	backend "github.com/hony2323/gosearch/backend"
 	typesPKG "github.com/hony2323/gosearch/backend/types"
@@ -24,22 +23,6 @@ func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 }
 
-func makeJson(a fs.DirEntry) typesPKG.DirEntry {
-	info, _ := a.Info()
-	return typesPKG.DirEntry{
-		Name:  a.Name(),
-		Type:  a.Type().String(),
-		IsDir: a.IsDir(),
-		Info: typesPKG.FileInfo{
-			Name:    info.Name(),
-			Size:    info.Size(),
-			ModTime: info.ModTime(),
-			IsDir:   info.IsDir(),
-			Sys:     info.Sys(),
-		},
-	}
-}
-
 func (a *App) ListFolder(dir string) []typesPKG.DirEntry {
 	itemsList, err := backend.ListFolder(dir)
 	if err != nil {
@@ -48,7 +31,7 @@ func (a *App) ListFolder(dir string) []typesPKG.DirEntry {
 
 	list := []typesPKG.DirEntry{}
 	for _, item := range itemsList {
-		list = append(list, makeJson(item))
+		list = append(list, typesPKG.MakeJson(item))
 	}
 	return list
 }
