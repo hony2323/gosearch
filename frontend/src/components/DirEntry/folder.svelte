@@ -1,9 +1,9 @@
 <script lang="ts">
-    import type { main } from "../../../wailsjs/go/models";
+    import type { types } from "../../../wailsjs/go/models";
 
     import Item from "./item.svelte";
 
-    export let itemList: main.DirEntryJson[];
+    export let itemList: types.DirEntry[];
 </script>
 
 <div class="Folder">

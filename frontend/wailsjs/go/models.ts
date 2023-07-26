@@ -1,6 +1,6 @@
-export namespace main {
+export namespace types {
 	
-	export class FileInfoJson {
+	export class FileInfo {
 	    name: string;
 	    size: number;
 	    // Go type: time
@@ -9,7 +9,7 @@ export namespace main {
 	    Sys: any;
 	
 	    static createFrom(source: any = {}) {
-	        return new FileInfoJson(source);
+	        return new FileInfo(source);
 	    }
 	
 	    constructor(source: any = {}) {
@@ -39,19 +39,19 @@ export namespace main {
 		    return a;
 		}
 	}
-	export class DirEntryJson {
-	    FileInfoJson: FileInfoJson;
+	export class DirEntry {
+	    Info: FileInfo;
 	    name: string;
 	    type: string;
 	    isDir: boolean;
 	
 	    static createFrom(source: any = {}) {
-	        return new DirEntryJson(source);
+	        return new DirEntry(source);
 	    }
 	
 	    constructor(source: any = {}) {
 	        if ('string' === typeof source) source = JSON.parse(source);
-	        this.FileInfoJson = this.convertValues(source["FileInfoJson"], FileInfoJson);
+	        this.Info = this.convertValues(source["Info"], FileInfo);
 	        this.name = source["name"];
 	        this.type = source["type"];
 	        this.isDir = source["isDir"];

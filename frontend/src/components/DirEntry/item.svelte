@@ -1,12 +1,12 @@
 <script lang="ts">
     import { FolderIcon, FileIcon } from "svelte-feather-icons";
 
-    import type { main } from "../../../wailsjs/go/models";
+    import type { types } from "../../../wailsjs/go/models";
     import { path, addEntryToPath } from "../store/store";
 
-    export let dirEntry: main.DirEntryJson;
+    export let dirEntry: types.DirEntry;
 
-    function handleDirEntryClick(dirEntry: main.DirEntryJson) {
+    function handleDirEntryClick(dirEntry: types.DirEntry) {
         if (dirEntry.isDir)
             path.update((value) => addEntryToPath(dirEntry.name, value));
     }
