@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package items;
+option go_package = "protos/";
+import "google/protobuf/timestamp.proto"; // For the timestamp field
+
+service ItemsResults {
+    rpc GetResults (ItemsRequest) returns (stream ItemsResponse);
+}
+
+message ItemsRequest {
+    string name = 1;
+    string path = 2;
+}
+
+message ItemsResponse {
+    repeated DirEntry entry = 1;
+}
+
+
+message FileInfo {
+    string name = 1;
+    int64 size = 2;
+    google.protobuf.Timestamp mod_time = 3;
+    bool is_dir = 4;
+    // google.protobuf.any sys = 5;
+}
+
+
+message DirEntry {
+    FileInfo info = 1;
+    string name = 2;
+    string type = 3;
+    bool is_dir = 4;
+}
