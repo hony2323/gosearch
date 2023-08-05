@@ -14,7 +14,8 @@ message ItemsRequest {
 }
 
 message ItemsResponse {
-    repeated DirEntry entry = 1;
+    // repeated DirEntry entry = 1;
+    DirEntry entry = 1;
 }
 
 
