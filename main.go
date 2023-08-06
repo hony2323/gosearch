@@ -16,21 +16,19 @@ import (
 
 //go:embed all:frontend/dist
 var assets embed.FS
+var serverPort = 50051
 
 func main() {
 
-	log.Info("Running main")
+	log.Infof("Atempting to listen to port %v", serverPort)
+	lis, err := net.Listen("tcp", "localhost:50051")
+	if err != nil {
+		log.Infof("Server is alread listening on port %v", serverPort)
+	}
 	go func() {
-		log.Info("running server")
-		println("what is happening is")
-		lis, err := net.Listen("tcp", "localhost:50051")
-		if err != nil {
-			log.Fatalf("Failed to listen: %v", err)
-		}
-		log.Info("Connected to 50051")
 		s := grpc.NewServer()
 		pb.RegisterItemsResultsServer(s, &server.Server{})
-		log.Info("Server is running on :50051")
+		log.Infof("Server is running on :%v", serverPort)
 		if err := s.Serve(lis); err != nil {
 			log.Fatalf("Failed to serve: %v", err)
 		}
@@ -40,7 +38,7 @@ func main() {
 	backend := backendPKG.NewBackend()
 
 	// Create application with options
-	err := wails.Run(&options.App{
+	err = wails.Run(&options.App{
 		Title:  "gosearch",
 		Width:  1024,
 		Height: 768,
